@@ -11439,14 +11439,23 @@ pre .code {
   width: 170px;
   border-radius: 50%;
 }
-
-.navbar .brand .brand-txt {
+/* Una prueba */
+/* .navbar .brand .brand-txt {
   position: relative;
   bottom: -20px;
   opacity: 0;
   -webkit-transition: 1s;
   transition: 1s;
   -weblit-transition: 1s;
+  z-index: 1;
+} */
+
+
+.navbar .brand .brand-txt {
+  position: relative;
+  bottom: 0;               /* Eliminamos el movimiento vertical */
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out; /* Solo suaviza la aparición/desaparición */
   z-index: 1;
 }
 
@@ -11455,11 +11464,11 @@ pre .code {
   color: #888;
 }
 
-@media (max-width: 991.98px) {
+/* @media (max-width: 991.98px) {
   .navbar .brand {
     display: none;
   }
-}
+} */
 
 .navbar.affix .brand-txt {
   bottom: 0;
@@ -11657,7 +11666,7 @@ pre .code {
     min-height: auto !important;
   }
 }
-
+/* 
 .contact .map {
   position: absolute;
   left: 0;
@@ -11688,4 +11697,162 @@ pre .code {
   background: #F85C70;
   display: block;
   margin-top: 10px;
+}
+
+ */
+
+
+
+/* ===== Avatar en móvil: visible, centrado y sin interferir el menú ===== */
+@media (max-width: 991.98px) {
+  /* El navbar será el referente del posicionamiento absoluto */
+  .navbar { position: relative; }
+
+  /* Sacamos el avatar del flujo con absolute, centrado y por encima */
+  .navbar .navbar-collapse .brand {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%); /* lo hace “colgar” del borde superior */
+    display: block !important;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    pointer-events: none; /* no bloquea clics del menú/hamburguesa */
+  }
+
+  .navbar .navbar-collapse .brand .brand-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  }
+
+  /* Oculta el texto bajo la foto en móvil para que no invada el navbar */
+  .navbar .navbar-collapse .brand .brand-txt { display: none; }
+
+  /* Cuando el menú está ABIERTO (collapse.show), ocultamos el avatar para no tapar el desplegable */
+  .navbar .navbar-collapse.show .brand { display: none !important; }
+
+  /* Si tienes regla que oculta .brand en <992px, la anulamos */
+  .navbar .brand { display: block; }
+}
+
+/* ===== Affix en escritorio: texto aparece al hacer scroll (foto se oculta) ===== */
+/* (Estas reglas ya existen en tu CSS; las recordamos para mantener el comportamiento) */
+.navbar.affix .brand-txt { bottom: 0; opacity: 1; }
+.navbar.affix .brand-img { top: -10px; opacity: 0; }
+
+
+
+
+/* ===== Avatar visible y centrado en móvil, sin interferir el menú ===== */
+@media (max-width: 991.98px) {
+  /* El navbar será el referencia para posicionamiento */
+  .navbar { position: relative; }
+
+  /* Mostramos el bloque brand en móvil (anula la regla original que lo ocultaba) */
+  .navbar .brand {
+    display: block !important;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%); /* cuelga del borde superior del navbar */
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    pointer-events: none; /* no bloquea el botón hamburguesa ni los links */
+    text-align: center;
+  }
+
+  .navbar .brand .brand-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  }
+
+  /* Oculta el texto bajo la foto en móvil para que no invada el navbar */
+  .navbar .brand .brand-txt { display: none; }
+
+  /* Si el menú móvil está ABIERTO, ocultamos el avatar para no tapar el desplegable */
+  .navbar .navbar-collapse.show ~ .brand {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   DESKTOP: avatar/ texto centrados en el navbar
+   =============================== */
+@media (min-width: 992px) {
+  /* El navbar será el contenedor de referencia */
+  .navbar { position: relative; }
+
+  /* El bloque brand va ABSOLUTO y centrado: no ocupa espacio en el layout */
+  .navbar .brand{
+    position: absolute !important;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%); /* cuelga por encima del borde superior */
+    display: block !important;
+    text-align: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;   /* no bloquea clics de los menús */
+    z-index: 10;
+  }
+
+  /* Foto (visible al inicio) */
+  .navbar .brand .brand-img{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  }
+
+  /* Texto oculto al inicio */
+  .navbar .brand .brand-txt{
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+  }
+
+  /* Cuando el navbar se fija (scroll): oculta foto y muestra texto CENTRADO */
+  .navbar.affix .brand{
+    top: 50%;
+    transform: translate(-50%, -50%); /* centrado perfecto dentro del navbar fijo */
+  }
+  .navbar.affix .brand-img{ opacity: 0; }
+  .navbar.affix .brand-txt{ opacity: 1; }
+}
+
+
+/* FOTO FONDO */
+@media (max-width: 767.98px) {
+  .header {
+    background-size: cover !important;      /* sigue cubriendo */
+    background-position: center 20% !important; /* sube el foco (ajústalo) */
+    min-height: 80vh;                        /* más alto => menos “zoom” visual */
+    background-attachment: scroll !important;
+  }
+  .header .header-content {
+    padding-top: 28vh;
+    padding-bottom: 14vh;
+  }
 }
