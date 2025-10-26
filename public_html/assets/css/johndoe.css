@@ -40,7 +40,9 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: Arial, Helvetica, sans-serif ;
+  --font-family-sans-serif: "-apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, Cantarell,
+               "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* --font-family-sans-serif: "Source Sans Pro", sans-serif; */
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -65,9 +67,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   /* font-family: "Source Sans Pro", sans-serif; */
-  font-family:Arial, Helvetica, sans-serif ;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, Cantarell,
+               "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300; /* Light look */
+  letter-spacing: 0.2px;  
+
   font-size: 1rem;
-  font-weight: 400;
+  /* font-weight: 400; */
   line-height: 1.5;
   color: #212529;
   text-align: left;
@@ -373,7 +380,9 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: sans-serif;
+  font-family:"-apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, Cantarell,
+               "Helvetica Neue", Helvetica, Arial, sans-serif ;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -2727,7 +2736,9 @@ textarea.form-control {
   }
 }
 
-.btn {
+
+/* BOTÓN SABER MAS */
+/* .btn {
   display: inline-block;
   font-weight: 400;
   color: #212529;
@@ -2745,7 +2756,7 @@ textarea.form-control {
   border-radius: 0.25rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+} */
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -8981,9 +8992,9 @@ button.bg-dark:focus {
 .mb-5,
 .my-5 {
   margin-bottom: 3rem !important;
-  margin-top: 2rem;
+  margin-top: 1rem;
   text-align: center;
-  font-size: 3rem;
+  font-size: 44px;
 }
 
 .ml-5,
@@ -11213,17 +11224,18 @@ p {
   opacity: 1;
   background: #1265ba;
   color: #fff;
+  border-radius: 25px;
 }
 
 .portfolio .portfolio-container .portfolio-item {
   position: relative;
   padding-left: 0;
   padding-right: 0;
-  margin: 10px -5px;
+  margin: 43px -5px;
   overflow: hidden;
   border-radius: 2px;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .portfolio .portfolio-container .portfolio-item .content-holder {
@@ -11235,7 +11247,7 @@ p {
           transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: #1265baa3;
+  background: #042a50e0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11263,7 +11275,7 @@ p {
 }
 
 .portfolio .portfolio-container .portfolio-item .content-holder .subtitle {
-  font-weight: 500;
+  font-weight: 400;
   opacity: 1;
   color: #fff;
 }
